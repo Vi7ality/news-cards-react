@@ -37,6 +37,7 @@ const NewsCard = ({ image, date, title, highlighted, description }: NewsCardProp
                 boxShadow: "0px 8px 30px rgba(0,0,0,0.08)",
                 overflow: "hidden",
                 height: "100%",
+                flexGrow: 1,
             }}
         >
             <CardMedia component="img" height="220" image={image} alt={title} />

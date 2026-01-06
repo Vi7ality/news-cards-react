@@ -1,5 +1,5 @@
 import NewsCard from "@/components/NewsCard";
-import { Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import { useGetArticlesQuery } from "../../store/spaceApi";
 import type { Article } from "../../types/article";
 
@@ -15,12 +15,13 @@ const HomePage = () => {
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error loading articles</p>;
+    console.log("articles", articles);
     return (
-        <>
-            <Grid container spacing={3} sx={{ padding: 3 }}>
+        <Container maxWidth="lg" sx={{ py: 4 }}>
+            <Grid container spacing={3}>
                 {articles &&
-                    articles.map((article: Article) => (
-                        <Grid item xs={12} sm={6} md={4} key={article.id}>
+                    articles.results.map((article: Article) => (
+                        <Grid item key={article.id} xs={12} sm={6} md={4}>
                             <NewsCard
                                 image={article.image_url}
                                 date={article.published_at}
@@ -31,7 +32,7 @@ const HomePage = () => {
                         </Grid>
                     ))}
             </Grid>
-        </>
+        </Container>
     );
 };
 
