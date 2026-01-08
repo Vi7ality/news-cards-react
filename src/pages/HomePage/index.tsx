@@ -1,10 +1,10 @@
 import NewsCard from "@/components/NewsCard";
-import { Container, Box } from "@mui/material";
+import { Container, Box, Typography } from "@mui/material";
 import { useGetArticlesQuery } from "../../store/spaceApi";
 import type { Article } from "../../types/article";
 import Searchbar from "@/components/Searchbar";
 import { useSelector } from "react-redux";
-import type { RootState } from "@reduxjs/toolkit/query";
+import type { RootState } from "../../store";
 
 const HomePage = () => {
     const searchQuery = useSelector((state: RootState) => state.search.query);
@@ -25,6 +25,9 @@ const HomePage = () => {
         <>
             <Searchbar />
             <Container maxWidth="lg" sx={{ py: 4 }}>
+                <Typography variant="h6" sx={{ mb: 4, fontWeight: 700 }}>
+                    Results: {articles?.count ? articles.count : 0}
+                </Typography>
                 <Box
                     sx={{
                         display: "grid",
