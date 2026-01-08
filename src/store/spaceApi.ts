@@ -7,8 +7,17 @@ export const spaceApi = createApi({
         baseUrl: "https://api.spaceflightnewsapi.net/v4/",
     }),
     endpoints: (builder) => ({
-        getArticles: builder.query<ArticlesResponse, { limit?: number; offset?: number }>({
-            query: ({ limit = 10, offset = 0 }) => `articles/?limit=${limit}&offset=${offset}`,
+        getArticles: builder.query<ArticlesResponse, { limit?: number; offset?: number; search?: string }>({
+            query: ({ limit = 10, offset = 0, search = "" }) => {
+                const params = new URLSearchParams({
+                    limit: limit.toString(),
+                    offset: offset.toString(),
+                });
+                if (search) {
+                    params.append("search", search);
+                }
+                return `articles/?${params.toString()}`;
+            },
         }),
     }),
 });
