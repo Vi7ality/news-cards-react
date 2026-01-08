@@ -2,7 +2,7 @@ import NewsCard from "@/components/NewsCard";
 import { Container, Box } from "@mui/material";
 import { useGetArticlesQuery } from "../../store/spaceApi";
 import type { Article } from "../../types/article";
-import Searchbar from "@/components/NewsCard/Searchbar";
+import Searchbar from "@/components/Searchbar";
 
 const HomePage = () => {
     const {

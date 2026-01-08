@@ -1,7 +1,18 @@
 import { Box, TextField, InputAdornment, Typography, Container } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/store";
 
 const Searchbar = () => {
+    const [localQuery, setLocalQuery] = useState<string>("");
+    const dispatch = useDispatch<AppDispatch>();
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setLocalQuery(value);
+        dispatch(setSearchQuery(value));
+    };
     return (
         <Container maxWidth="lg" sx={{ py: 4 }}>
             <Box sx={{ maxWidth: 720 }}>
