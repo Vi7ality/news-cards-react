@@ -3,8 +3,11 @@ import { Container, Box } from "@mui/material";
 import { useGetArticlesQuery } from "../../store/spaceApi";
 import type { Article } from "../../types/article";
 import Searchbar from "@/components/Searchbar";
+import { useSelector } from "react-redux";
+import type { RootState } from "@reduxjs/toolkit/query";
 
 const HomePage = () => {
+    const searchQuery = useSelector((state: RootState) => state.search.query);
     const {
         data: articles,
         isLoading,
@@ -12,6 +15,7 @@ const HomePage = () => {
     } = useGetArticlesQuery({
         limit: 10,
         offset: 0,
+        search: searchQuery,
     });
 
     if (isLoading) return <p>Loading...</p>;
