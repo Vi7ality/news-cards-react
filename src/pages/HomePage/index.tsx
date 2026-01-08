@@ -2,6 +2,7 @@ import NewsCard from "@/components/NewsCard";
 import { Container, Box } from "@mui/material";
 import { useGetArticlesQuery } from "../../store/spaceApi";
 import type { Article } from "../../types/article";
+import Searchbar from "@/components/NewsCard/Searchbar";
 
 const HomePage = () => {
     const {
@@ -17,32 +18,35 @@ const HomePage = () => {
     if (error) return <p>Error loading articles</p>;
     console.log("articles", articles);
     return (
-        <Container maxWidth="lg" sx={{ py: 4 }}>
-            <Box
-                sx={{
-                    display: "grid",
-                    gridTemplateColumns: {
-                        xs: "1fr",
-                        sm: "repeat(2, 400px)",
-                        md: "repeat(3, 400px)",
-                    },
-                    gap: 3,
-                    justifyContent: "center",
-                }}
-            >
-                {articles &&
-                    articles.results.map((article: Article) => (
-                        <NewsCard
-                            key={article.id}
-                            image={article.image_url}
-                            date={article.published_at}
-                            title={article.title}
-                            highlighted="2020"
-                            description="Non sed molestie tortor massa vitae in mattis. Eget vel consequat hendrerit commodo libero aliquam. Urna arcu nunc tortor vitae pharetra..."
-                        />
-                    ))}
-            </Box>
-        </Container>
+        <>
+            <Searchbar />
+            <Container maxWidth="lg" sx={{ py: 4 }}>
+                <Box
+                    sx={{
+                        display: "grid",
+                        gridTemplateColumns: {
+                            xs: "1fr",
+                            sm: "repeat(2, 400px)",
+                            md: "repeat(3, 400px)",
+                        },
+                        gap: 3,
+                        justifyContent: "center",
+                    }}
+                >
+                    {articles &&
+                        articles.results.map((article: Article) => (
+                            <NewsCard
+                                key={article.id}
+                                image={article.image_url}
+                                date={article.published_at}
+                                title={article.title}
+                                highlighted="2020"
+                                description="Non sed molestie tortor massa vitae in mattis. Eget vel consequat hendrerit commodo libero aliquam. Urna arcu nunc tortor vitae pharetra..."
+                            />
+                        ))}
+                </Box>
+            </Container>
+        </>
     );
 };
 
