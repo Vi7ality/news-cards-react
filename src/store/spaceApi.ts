@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { ArticlesResponse } from "@/types/article";
+import type { Article, ArticlesResponse } from "@/types/article";
 
 export const spaceApi = createApi({
     reducerPath: "spaceApi",
@@ -18,6 +18,9 @@ export const spaceApi = createApi({
                 }
                 return `articles/?${params.toString()}`;
             },
+        }),
+        getArticleById: builder.query<Article, number>({
+            query: (id) => `articles/${id}/`,
         }),
     }),
 });
