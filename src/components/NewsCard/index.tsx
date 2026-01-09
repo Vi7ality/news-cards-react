@@ -1,4 +1,5 @@
 import { Card, CardContent, CardMedia, Typography, Box, Stack, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 interface NewsCardProps {
     image: string;
@@ -6,9 +7,10 @@ interface NewsCardProps {
     title: string;
     highlighted?: string;
     description: string;
+    id: number;
 }
 
-const NewsCard = ({ image, date, title, highlighted, description }: NewsCardProps) => {
+const NewsCard = ({ image, date, title, highlighted, description, id }: NewsCardProps) => {
     const renderTitle = () => {
         if (!highlighted) return title;
 
@@ -66,7 +68,8 @@ const NewsCard = ({ image, date, title, highlighted, description }: NewsCardProp
                 </Typography>
 
                 <Link
-                    href="#"
+                    component={RouterLink}
+                    to={`/news/${id}`}
                     underline="none"
                     sx={{
                         fontWeight: 600,
