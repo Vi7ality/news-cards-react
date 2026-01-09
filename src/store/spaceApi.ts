@@ -25,4 +25,4 @@ export const spaceApi = createApi({
     }),
 });
 
-export const { useGetArticlesQuery } = spaceApi;
+export const { useGetArticlesQuery, useGetArticleByIdQuery } = spaceApi;

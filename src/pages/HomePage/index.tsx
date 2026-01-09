@@ -43,6 +43,7 @@ const HomePage = () => {
                     {articles &&
                         articles.results.map((article: Article) => (
                             <NewsCard
+                                id={article.id}
                                 key={article.id}
                                 image={article.image_url}
                                 date={article.published_at}
