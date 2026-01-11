@@ -45,6 +45,8 @@ const ArticleCard = ({ image, date, title, highlighted, description, id }: Artic
                 overflow: "hidden",
                 height: "100%",
                 width: "400px",
+                display: "flex",
+                flexDirection: "column",
             }}
         >
             <CardMedia
@@ -58,7 +60,14 @@ const ArticleCard = ({ image, date, title, highlighted, description, id }: Artic
                 }}
             />
 
-            <CardContent sx={{ p: 3 }}>
+            <CardContent
+                sx={{
+                    p: 3,
+                    display: "flex",
+                    flexDirection: "column",
+                    flex: 1,
+                }}
+            >
                 <Stack direction="row" alignItems="center" spacing={1} mb={2}>
                     <Box
                         component="img"
@@ -87,7 +96,7 @@ const ArticleCard = ({ image, date, title, highlighted, description, id }: Artic
                     {renderTitle()}
                 </Typography>
 
-                <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+                <Typography variant="body1" color="text.secondary" sx={{ mb: 3, flex: 1 }}>
                     {description}
                 </Typography>
 
@@ -101,6 +110,7 @@ const ArticleCard = ({ image, date, title, highlighted, description, id }: Artic
                         display: "inline-flex",
                         alignItems: "center",
                         gap: 1,
+                        mt: "auto",
                     }}
                 >
                     Read more →
