@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import placeholderImage from "../../assets/placeholder.svg";
 import { useState } from "react";
 
-interface NewsCardProps {
+interface ArticleCardProps {
     image: string;
     date: string;
     title: string;
@@ -12,7 +12,7 @@ interface NewsCardProps {
     id: number;
 }
 
-const NewsCard = ({ image, date, title, highlighted, description, id }: NewsCardProps) => {
+const ArticleCard = ({ image, date, title, highlighted, description, id }: ArticleCardProps) => {
     const [imageError, setImageError] = useState(false);
 
     const renderTitle = () => {
@@ -99,4 +99,4 @@ const NewsCard = ({ image, date, title, highlighted, description, id }: NewsCard
     );
 };
 
-export default NewsCard;
+export default ArticleCard;
