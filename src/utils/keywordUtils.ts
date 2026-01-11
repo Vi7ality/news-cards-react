@@ -1,4 +1,3 @@
-// src/utils/keywordUtils.ts
 import type { Article } from "@/types/article";
 
 export interface KeywordMatch {
@@ -45,7 +44,6 @@ export function sortArticlesByPriority(articles: Article[], keywords: string[]):
         const aMatch = getArticleMatchInfo(a, keywords);
         const bMatch = getArticleMatchInfo(b, keywords);
 
-        // Priority: title match > description match
         if (aMatch.hasTitleMatch && !bMatch.hasTitleMatch) return -1;
         if (!aMatch.hasTitleMatch && bMatch.hasTitleMatch) return 1;
 
@@ -84,7 +82,6 @@ export function highlightKeywords(text: string, keywords: string[]): TextPart[] 
         } else {
             const last = mergedMatches[mergedMatches.length - 1];
             if (match.start <= last.end) {
-                // Overlapping or adjacent - merge
                 last.end = Math.max(last.end, match.end);
                 last.text = text.substring(last.start, last.end);
             } else {
