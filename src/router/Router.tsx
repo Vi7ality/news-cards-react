@@ -1,11 +1,11 @@
 import { createBrowserRouter, type RouteObject } from "react-router-dom";
 
-import NewsItemPage from "@/pages/NewsItemPage";
+import ArticlePage from "@/pages/ArticlePage";
 import HomePage from "@/pages/HomePage";
 
 const routes: RouteObject[] = [
     { path: "/", element: <HomePage /> },
-    { path: "/news/:id", element: <NewsItemPage /> },
+    { path: "/news/:id", element: <ArticlePage /> },
 ];
 
 const router = createBrowserRouter(routes);

@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Container, Typography, Box } from "@mui/material";
 import { useGetArticleByIdQuery } from "../../store/spaceApi";
 
-const NewsItemPage = () => {
+const ArticlePage = () => {
     const { id } = useParams<{ id: string }>();
     const { data: article, isLoading, error } = useGetArticleByIdQuery(Number(id));
 
@@ -96,4 +96,4 @@ const NewsItemPage = () => {
     );
 };
 
-export default NewsItemPage;
+export default ArticlePage;
