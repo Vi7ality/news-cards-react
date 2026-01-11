@@ -1,5 +1,7 @@
 import { Card, CardContent, CardMedia, Typography, Box, Stack, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import placeholderImage from "../../assets/placeholder.svg";
+import { useState } from "react";
 
 interface NewsCardProps {
     image: string;
@@ -11,6 +13,8 @@ interface NewsCardProps {
 }
 
 const NewsCard = ({ image, date, title, highlighted, description, id }: NewsCardProps) => {
+    const [imageError, setImageError] = useState(false);
+
     const renderTitle = () => {
         if (!highlighted) return title;
 
@@ -42,7 +46,16 @@ const NewsCard = ({ image, date, title, highlighted, description, id }: NewsCard
                 width: "400px",
             }}
         >
-            <CardMedia component="img" height="220" image={image} alt={title} />
+            <CardMedia
+                component="img"
+                height="220"
+                image={imageError ? placeholderImage : image}
+                alt={title}
+                onError={() => setImageError(true)}
+                sx={{
+                    backgroundColor: "#f0f0f0",
+                }}
+            />
 
             <CardContent sx={{ p: 3 }}>
                 <Stack direction="row" alignItems="center" spacing={1} mb={2}>

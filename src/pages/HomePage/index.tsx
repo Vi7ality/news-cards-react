@@ -5,6 +5,7 @@ import type { Article } from "../../types/article";
 import Searchbar from "@/components/Searchbar";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store";
+import { formatDateWithOrdinal } from "@/utils/formatDate";
 
 const HomePage = () => {
     const searchQuery = useSelector((state: RootState) => state.search.query);
@@ -46,7 +47,7 @@ const HomePage = () => {
                                 id={article.id}
                                 key={article.id}
                                 image={article.image_url}
-                                date={article.published_at}
+                                date={formatDateWithOrdinal(article.published_at)}
                                 title={article.title}
                                 highlighted="2020"
                                 description="Non sed molestie tortor massa vitae in mattis. Eget vel consequat hendrerit commodo libero aliquam. Urna arcu nunc tortor vitae pharetra..."

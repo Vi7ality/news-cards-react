@@ -10,8 +10,6 @@ const NewsItemPage = () => {
     if (error) return <div>Error loading article</div>;
     if (!article) return <div>Article not found</div>;
 
-    console.log("article", article);
-
     return (
         <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
             <Box
