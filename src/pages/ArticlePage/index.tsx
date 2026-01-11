@@ -1,14 +1,59 @@
 import { useParams, Link } from "react-router-dom";
 import { Container, Typography, Box } from "@mui/material";
 import { useGetArticleByIdQuery } from "../../store/spaceApi";
+import { GridLoader } from "@/components/Loader";
+import Searchbar from "@/components/Searchbar";
 
 const ArticlePage = () => {
     const { id } = useParams<{ id: string }>();
-    const { data: article, isLoading, error } = useGetArticleByIdQuery(Number(id));
+    const { data: article, isLoading, isFetching, error } = useGetArticleByIdQuery(Number(id));
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error loading article</div>;
-    if (!article) return <div>Article not found</div>;
+    if (isLoading || isFetching) {
+        return (
+            <>
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        minHeight: "400px",
+                    }}
+                >
+                    <GridLoader />
+                </Box>
+            </>
+        );
+    }
+    if (error)
+        return (
+            <>
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        minHeight: "400px",
+                    }}
+                >
+                    <Typography>Error loading article</Typography>
+                </Box>
+            </>
+        );
+    if (!article)
+        return (
+            <>
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        minHeight: "400px",
+                    }}
+                >
+                    <Typography>Article not found</Typography>
+                </Box>
+            </>
+        );
 
     return (
         <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
