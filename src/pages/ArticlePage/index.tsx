@@ -2,7 +2,6 @@ import { useParams, Link } from "react-router-dom";
 import { Container, Typography, Box } from "@mui/material";
 import { useGetArticleByIdQuery } from "../../store/spaceApi";
 import { GridLoader } from "@/components/Loader";
-import Searchbar from "@/components/Searchbar";
 
 const ArticlePage = () => {
     const { id } = useParams<{ id: string }>();
