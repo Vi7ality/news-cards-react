@@ -3,38 +3,40 @@ import { Link as RouterLink } from "react-router-dom";
 import placeholderImage from "@/assets/placeholder.svg";
 import calendarIcon from "@/assets/icon_calendar.svg";
 import { useState } from "react";
+import { highlightKeywords } from "@/utils/keywordUtils";
 
 interface ArticleCardProps {
     image: string;
     date: string;
     title: string;
-    highlighted?: string;
     description: string;
     id: number;
+    keywords?: string[];
 }
 
-const ArticleCard = ({ image, date, title, highlighted, description, id }: ArticleCardProps) => {
+const ArticleCard = ({ image, date, title, description, id, keywords = [] }: ArticleCardProps) => {
     const [imageError, setImageError] = useState(false);
 
-    const renderTitle = () => {
-        if (!highlighted) return title;
-
-        return title.split(highlighted).map((part, index, arr) => (
-            <span key={index}>
-                {part}
-                {index < arr.length - 1 && (
+    const renderHighlightedText = (text: string) => {
+        if (keywords.length === 0) return text;
+        const parts = highlightKeywords(text, keywords);
+        return parts.map((part, index) => {
+            if (part.highlight) {
+                return (
                     <Box
+                        key={index}
                         component="span"
                         sx={{
                             backgroundColor: "#FFF176",
                             px: 0.5,
                         }}
                     >
-                        {highlighted}
+                        {part.text}
                     </Box>
-                )}
-            </span>
-        ));
+                );
+            }
+            return <span key={index}>{part.text}</span>;
+        });
     };
 
     return (
@@ -93,11 +95,11 @@ const ArticleCard = ({ image, date, title, highlighted, description, id }: Artic
                         mb: 2,
                     }}
                 >
-                    {renderTitle()}
+                    {renderHighlightedText(title)}
                 </Typography>
 
                 <Typography variant="body1" color="text.secondary" sx={{ mb: 3, flex: 1 }}>
-                    {description}
+                    {renderHighlightedText(description)}
                 </Typography>
 
                 <Link
