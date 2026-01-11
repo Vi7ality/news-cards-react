@@ -1,6 +1,7 @@
 import { Card, CardContent, CardMedia, Typography, Box, Stack, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import placeholderImage from "../../assets/placeholder.svg";
+import placeholderImage from "@/assets/placeholder.svg";
+import calendarIcon from "@/assets/icon_calendar.svg";
 import { useState } from "react";
 
 interface ArticleCardProps {
@@ -59,6 +60,16 @@ const ArticleCard = ({ image, date, title, highlighted, description, id }: Artic
 
             <CardContent sx={{ p: 3 }}>
                 <Stack direction="row" alignItems="center" spacing={1} mb={2}>
+                    <Box
+                        component="img"
+                        src={calendarIcon}
+                        alt="Calendar"
+                        sx={{
+                            width: 16,
+                            height: 16,
+                            opacity: 0.6,
+                        }}
+                    />
                     <Typography variant="body2" color="text.secondary">
                         {date}
                     </Typography>
